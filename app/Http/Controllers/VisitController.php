@@ -36,13 +36,13 @@ class VisitController extends Controller
         return view('visits.edit', compact('visit'));
     }
 
-    public function update(Request $request, Visit $visit)
+    public function update(Request $request, Visit $visit): RedirectResponse
     {
         $visit->update($request->all());
         return redirect()->route('visits.index')->with('success', 'Visitante actualizado correctamente.');
     }
 
-    public function destroy(Visit $visit)
+    public function destroy(Visit $visit): RedirectResponse
     {
         $visit->delete();
         return redirect()->route('visits.index')->with('success', 'Visitante eliminado correctamente.');
