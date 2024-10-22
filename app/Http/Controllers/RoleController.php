@@ -11,7 +11,7 @@ class RoleController extends Controller
 {
     public function index(): View
     {
-        $roles = Role::all();
+        $roles = Role::latest()->paginate(10);
         return view('roles.index', compact('roles'));
     }
 
@@ -22,6 +22,10 @@ class RoleController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        $request->validate([
+            'name' => 'required|unique:roles|max:30|string',
+        ]);
+
         Role::create($request->all());
         return redirect()->route('roles.index')->with('success', 'Rol creado correctamente.');
     }
