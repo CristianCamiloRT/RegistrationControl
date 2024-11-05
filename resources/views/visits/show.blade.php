@@ -72,7 +72,7 @@
                     <div class="col-md-12">
                         <div class="mb-3 mb-0">
                             <x-label-form class="form-label" :required="false">Observaciones</x-label-form>
-                            <x-textarea-form rows="10" class="form-control" placeholder="Deje aquí las observaciones"> {{ $visit->observations }}</x-textarea-form>
+                            <x-textarea-form rows="10" class="form-control" placeholder="Deje aquí las observaciones" readonly> {{ $visit->observations }}</x-textarea-form>
                         </div>
                     </div>
                 </div>

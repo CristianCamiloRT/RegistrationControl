@@ -17,4 +17,9 @@ class Visit extends Model
         'observations',
         'user_id',
     ];
+
+    public function setNameProperty($value)
+    {
+        $this->attributes['name'] = ucwords(strtolower($value));
+    }
 }
