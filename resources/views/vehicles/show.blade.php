@@ -135,7 +135,7 @@
                 <div class="col-md-2">
                     <div class="mb-3">
                         <x-label-form class="form-label">Vidrios</x-label-form>
-                        <x-select-input class="form-select"  :isInvalid="$errors->has('glasses')" :selected="$vehicle->glasses" :options="collect(['1' => 'Si', '0' => 'No'])->prepend('Seleccione un opción', '')" readonly/>
+                        <x-select-input class="form-select"  :isInvalid="$errors->has('glasses')" :selected="$vehicle->glasses" :options="collect(['1' => 'Si', '0' => 'No'])->prepend('Seleccione un opción', '')" disabled/>
                     </div>
                 </div>
             </div>
