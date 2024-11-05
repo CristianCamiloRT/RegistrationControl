@@ -124,24 +124,17 @@
 								<td>{{ $visit->entry_date }}</td>
 								<td>{{ $visit->exit_date }}</td>
 								<td class="text-end">
-                                    @if($visit->exit_date == null)
-                                        <form action="{{ route('visits.exit', $visit->id) }}" method="POST">
-                                            @csrf
-                                            @method('POST')
+									<form action="{{ route('visits.exit', $visit->id) }}" method="POST">
+										@csrf
+										@method('POST')
+										@if($visit->exit_date == null)
                                             <x-button type="submit" class="btn btn-outline-success btn-sucess">
                                                 {{ __('Dar Salidar') }}
                                             </x-button>
-                                        </form>
-                                    @endif
-									<form action="{{ route('visits.destroy', $visit->id) }}" method="POST">
-										<!-- <x-a :href="route('visits.edit', $visit->id)" class="btn btn-outline-primary">
-											{{ __('Editar') }}
-										</x-a> -->
-										@csrf
-										@method('DELETE')
-										<x-button type="submit" class="btn btn-outline-danger btn-delete">
-											{{ __('Eliminar') }}
-										</x-button>
+										@endif
+										<x-a :href="route('visits.show', $visit->id)" class="btn btn-outline-primary">
+											{{ __('Ver Info') }}
+										</x-a>
 									</form>
 								</td>
 							</tr>
