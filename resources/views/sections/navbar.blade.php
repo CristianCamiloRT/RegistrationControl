@@ -56,6 +56,11 @@
                             Roles
                         </x-nav-link>
                     </x-nav-item>
+                    <x-nav-item :active="request()->routeIs('visits.*')">
+                        <x-nav-link :href="route('visits.index')" class="nav-link" :icon="'ti ti-fall icon'">
+                            Visitantes
+                        </x-nav-link>
+                    </x-nav-item>
                 </ul>
             </div>
         </div>

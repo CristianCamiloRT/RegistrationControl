@@ -6,12 +6,13 @@ use App\Models\Visit;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class VisitController extends Controller
 {
     public function index(): View
     {
-        $visits = Visit::all();
+        $visits = Visit::latest()->paginate(20);
         return view('visits.index', compact('visits'));
     }
 
@@ -22,7 +23,23 @@ class VisitController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        Visit::create($request->all());
+        $request->validate([
+            'name' => 'required|string|max:120',
+            'document' => 'required|string|max:30',
+            'interior' => 'required|integer',
+            'house' => 'required|integer',
+            'authorized_by' => 'required|string|max:120',
+            'entry_date' => 'required|date_format:Y-m-d\TH:i',
+        ]);
+
+        
+        $data = $request->all();
+        
+        $data['entry_date'] = date('Y-m-d H:i', strtotime($request->entry_date));
+        $data['user_id'] = Auth::id();
+
+        Visit::create($data);
+
         return redirect()->route('visits.index')->with('success', 'Visitante registrado correctamente.');
     }
 
@@ -46,5 +63,12 @@ class VisitController extends Controller
     {
         $visit->delete();
         return redirect()->route('visits.index')->with('success', 'Visitante eliminado correctamente.');
+    }
+
+    public function exit(Visit $visit): RedirectResponse
+    {
+        $visit->exit_date = date('Y-m-d H:i');
+        $visit->update();
+        return redirect()->route('visits.index')->with('success', 'Se dio salida correctamente.');
     }
 }
