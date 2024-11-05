@@ -26,4 +26,14 @@ class Vehicle extends Model
         'stops',
         'glasses'
     ];
+
+    public function setPlateAttribute($value)
+    {
+        $this->attributes['plate'] = strtoupper($value);
+    }
+
+    public function setBrandAttribute($value)
+    {
+        $this->attributes['brand'] = ucwords(strtolower($value));
+    }
 }

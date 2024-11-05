@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('entry_date');
-            $table->dateTime('exit_date')->nullable();
+            $table->timestamp('entry_date');
+            $table->timestamp('exit_date')->nullable();
             $table->integer('interior');
             $table->integer('house');
             $table->string('plate');

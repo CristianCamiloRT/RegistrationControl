@@ -61,6 +61,11 @@
                             Visitantes
                         </x-nav-link>
                     </x-nav-item>
+                    <x-nav-item :active="request()->routeIs('vehicles.*')">
+                        <x-nav-link :href="route('vehicles.index')" class="nav-link" :icon="'ti ti-car icon'">
+                            Vehiculos
+                        </x-nav-link>
+                    </x-nav-item>
                 </ul>
             </div>
         </div>

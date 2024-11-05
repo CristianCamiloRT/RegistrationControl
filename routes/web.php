@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\VisitController;
+use App\Http\Controllers\VehicleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('visits', VisitController::class);
     Route::post('/visits/{visit}/exit', [VisitController::class, 'exit'])->name('visits.exit');
+    Route::resource('vehicles', VehicleController::class);
+    Route::post('/vehicles/{vehicle}/exit', [VehicleController::class, 'exit'])->name('vehicles.exit');
 });
 
 require __DIR__.'/auth.php';
